@@ -25,7 +25,7 @@ export async function POST() {
     if (isAxiosError(error)) {
       logErrorResponse(error.response?.data);
       return NextResponse.json(
-        { error: error.message, response: error.response?.data },
+        { error: error.response?.data?.error ?? error.response?.data?.message ?? error.message },
         { status: error.status }
       );
     }

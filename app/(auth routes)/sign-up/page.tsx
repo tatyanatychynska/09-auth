@@ -1,15 +1,14 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import css from './SignUpPage.module.css';
-import { useState } from 'react';
 import { register, RegisterRequest } from '@/lib/api/clientApi';
 import { AxiosError } from 'axios';
 import { useAuthStore } from '@/lib/store/authStore';
+import { toast } from 'sonner';
 
 export type ApiError = AxiosError<{ error: string }>;
 const SignUp = () => {
   const router = useRouter();
-  const [error, setError] = useState('');
   const setUser = useAuthStore(state => state.setUser);
 
   const handleSubmit = async (formData: FormData) => {
@@ -20,10 +19,10 @@ const SignUp = () => {
         setUser(res);
         router.push('/profile');
       } else {
-        setError('Invalid email or password');
+        toast.error('Invalid email or password');
       }
     } catch (error) {
-      setError(
+      toast.error(
         (error as ApiError).response?.data?.error ??
           (error as ApiError).message ??
           'Oops... some error'
@@ -49,8 +48,6 @@ const SignUp = () => {
             Register
           </button>
         </div>
-
-        {error && <p className={css.error}>{error}</p>}
       </form>
     </main>
   );

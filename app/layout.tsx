@@ -5,6 +5,7 @@ import Footer from '@/components/Footer/Footer';
 import Header from '@/components/Header/Header';
 import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
 import AuthProvider from '@/components/AuthProvider/AuthProvider';
+import { Toaster } from 'sonner';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -59,6 +60,13 @@ export default function RootLayout({
       <body className={robotoFont.className}>
         <TanStackProvider>
           <AuthProvider>
+            <Toaster
+              toastOptions={{
+                classNames: {
+                  error: 'toast-error',
+                },
+              }}
+            />
             <Header />
             {modal}
             {children}

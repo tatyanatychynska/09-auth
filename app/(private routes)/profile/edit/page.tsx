@@ -5,6 +5,8 @@ import css from './EditProfilePage.module.css';
 import { updateMe } from '@/lib/api/clientApi';
 import { useAuthStore } from '@/lib/store/authStore';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
+import { AxiosError } from 'axios';
 
 const EditProfile = () => {
   const user = useAuthStore(state => state.user);
@@ -14,11 +16,17 @@ const EditProfile = () => {
 
   const handleSaveUser = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const username = formData.get('username') as string;
-    const res = await updateMe({ username });
-    setUser(res);
-    router.push('/profile');
+    try {
+      const formData = new FormData(event.currentTarget);
+      const username = formData.get('username') as string;
+      const res = await updateMe({ username });
+      setUser(res);
+      router.push('/profile');
+    } catch (error) {
+      toast.error(
+        (error as AxiosError<{ error: string }>).response?.data?.error ?? 'Failed to update profile'
+      );
+    }
   };
 
   return (

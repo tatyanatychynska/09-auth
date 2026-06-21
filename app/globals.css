@@ -6,3 +6,8 @@ body {
   margin: 0;
   background-color: #f8f9fa;
 }
+
+.toast-error {
+  background: #ff4d4f !important;
+  color: #fff !important;
+}
