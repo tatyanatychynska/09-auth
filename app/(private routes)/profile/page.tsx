@@ -8,6 +8,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const user = await getMe();
   return {
     title: `${user.username} | Profile`,
+    description: `Profile page of ${user.username}`,
   };
 }
 

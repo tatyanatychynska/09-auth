@@ -53,12 +53,12 @@ export async function proxy(req: NextRequest) {
 
   if (isPublic) {
     if (accessToken) {
-      return NextResponse.redirect(new URL('/profile', origin));
+      return NextResponse.redirect(new URL('/', origin));
     }
     if (refreshToken) {
       try {
         const authRes = await checkSession();
-        const response = NextResponse.redirect(new URL('/profile', origin), {
+        const response = NextResponse.redirect(new URL('/', origin), {
           headers: { Cookie: cookiesStore.toString() },
         });
         const isAuth = setServerCookies(response, authRes);
