@@ -4,6 +4,7 @@ import './globals.css';
 import Footer from '@/components/Footer/Footer';
 import Header from '@/components/Header/Header';
 import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
+import AuthProvider from '@/components/AuthProvider/AuthProvider';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `NoteHub`,
     description: `NoteHub is a simple and efficient application designed for managing personal notes. It helps keep your thoughts organized and accessible in one place, whether you are at home or on the go.`,
-    url: `https://08-zustand-seven-ivory.vercel.app`,
+    url: `https://09-auth-sage-ten.vercel.app`,
     siteName: 'NoteHub',
     images: [
       {
@@ -57,10 +58,12 @@ export default function RootLayout({
     >
       <body className={robotoFont.className}>
         <TanStackProvider>
-          <Header />
-          {modal}
-          {children}
-          <Footer />
+          <AuthProvider>
+            <Header />
+            {modal}
+            {children}
+            <Footer />
+          </AuthProvider>
         </TanStackProvider>
       </body>
     </html>

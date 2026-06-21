@@ -4,7 +4,7 @@ A note management application built with Next.js (App Router), featuring SSR wit
 
 ## Live Demo
 
-[https://08-zustand-seven-ivory.vercel.app](https://08-zustand-seven-ivory.vercel.app)
+[https://09-auth-sage-ten.vercel.app](https://09-auth-sage-ten.vercel.app)
 
 ## Features
 
